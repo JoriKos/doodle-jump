@@ -18,7 +18,7 @@ public class Platform : MonoBehaviour
 
         if (objectTransform.position.y < cameraPosition.y)
         {
-            //Destroy(this.gameObject);
+            Destroy(this.gameObject);
         }
 
         /*

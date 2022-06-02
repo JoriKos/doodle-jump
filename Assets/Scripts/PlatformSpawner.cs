@@ -18,7 +18,6 @@ public class PlatformSpawner : MonoBehaviour
     void Update()
     {
         cameraPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0));
-        //Debug.Log(cameraPosition.y);
     }
 
 

@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour
     private Vector2 upForce;
     private Vector3 mousePos;
     private Transform objectTransform;
+    private Vector3 cameraPosition;
 
     void Awake()
     {
@@ -20,21 +21,25 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+        cameraPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)); //Get camera boundaries
+
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); //Get position of the mouse
 
         objectTransform.Translate(mousePos.x, 0, 0); //Use mouse's X position to move cube
 
         //If the player's x coordinates exceed that of the mouse, set the position to be that of the mouse
-        if (objectTransform.position.x < mousePos.x) 
+        if (objectTransform.position.x < mousePos.x)  //left
         {
             objectTransform.position = new Vector2(mousePos.x, objectTransform.position.y);
         }
 
-        if (objectTransform.position.x > mousePos.x)
+        if (objectTransform.position.x > mousePos.x) //right
         {
             objectTransform.position = new Vector2(mousePos.x, objectTransform.position.y);
         }
-        
+
+        //Clamp object to screen
+        objectTransform.position = new Vector2(Mathf.Clamp(objectTransform.position.x, cameraPosition.x - 11, cameraPosition.x), objectTransform.position.y);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
