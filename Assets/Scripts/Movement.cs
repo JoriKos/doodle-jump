@@ -4,15 +4,44 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private float speed;
+    private Rigidbody2D rb;
+    private Vector2 upForce;
+    private Vector3 mousePos;
+    private Transform objectTransform;
+
+    void Awake()
     {
+        objectTransform = this.gameObject.GetComponent<Transform>();
+        speed = 100;
+        rb = this.gameObject.GetComponent<Rigidbody2D>();
+        upForce = new Vector2(0, 10 * speed);
+    }
+
+    void Update()
+    {
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); //Get position of the mouse
+
+        objectTransform.Translate(mousePos.x, 0, 0); //Use mouse's X position to move cube
+
+        //If the player's x coordinates exceed that of the mouse, set the position to be that of the mouse
+        if (objectTransform.position.x < mousePos.x) 
+        {
+            objectTransform.position = new Vector2(mousePos.x, objectTransform.position.y);
+        }
+
+        if (objectTransform.position.x > mousePos.x)
+        {
+            objectTransform.position = new Vector2(mousePos.x, objectTransform.position.y);
+        }
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if (collision.gameObject.tag == "Platform") //When hitting platforms, jump up
+        {
+            rb.AddForce(upForce);
+        }
     }
 }
