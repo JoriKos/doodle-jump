@@ -38,8 +38,16 @@ public class Movement : MonoBehaviour
             objectTransform.position = new Vector2(mousePos.x, objectTransform.position.y);
         }
 
-        //Clamp object to screen
+        //Clamp player to screen
         objectTransform.position = new Vector2(Mathf.Clamp(objectTransform.position.x, cameraPosition.x - 11, cameraPosition.x), objectTransform.position.y);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Platform")
+        {
+            collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
