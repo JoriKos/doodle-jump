@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private Camera cam;
+    private Vector3 cameraPosition;
 
-    // Update is called once per frame
+    void Awake()
+    {
+        cam = Camera.main;
+    }
+    
     void Update()
     {
-        
+        cameraPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0));
+        if (this.gameObject.transform.position.y < cameraPosition.y)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

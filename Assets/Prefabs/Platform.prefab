@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 126046680018635018}
   - component: {fileID: 126046680018635019}
   - component: {fileID: 1280140209167428951}
-  - component: {fileID: 1322744714638047291}
+  - component: {fileID: -9036750407724128576}
   m_Layer: 0
   m_Name: Platform
   m_TagString: Platform
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cab8097a936e9445b3bfb5a168623e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &1322744714638047291
+--- !u!61 &-9036750407724128576
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,7 +106,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

@@ -21,6 +21,11 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+        if (rb.velocity.y > 10f)
+        {
+            rb.velocity = new Vector2(0, 10f);
+        }
+
         cameraPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)); //Get camera boundaries
 
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); //Get position of the mouse
@@ -40,14 +45,6 @@ public class Movement : MonoBehaviour
 
         //Clamp player to screen
         objectTransform.position = new Vector2(Mathf.Clamp(objectTransform.position.x, cameraPosition.x - 11, cameraPosition.x), objectTransform.position.y);
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Platform")
-        {
-            collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

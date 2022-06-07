@@ -34,12 +34,5 @@ public class Platform : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
-        /*
-        if (objectTransform.position.y - 20 > cameraPosition.y)
-        {
-            Debug.Log("Spawned");
-        }
-        */
     }
 }
