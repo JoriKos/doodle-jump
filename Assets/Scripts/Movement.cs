@@ -53,5 +53,11 @@ public class Movement : MonoBehaviour
         {
             rb.AddForce(upForce);
         }
+
+        if (collision.gameObject.tag == "BreakablePlatform") //When hitting breakable platforms, jump up and destroy platform
+        {
+            rb.AddForce(upForce);
+            Destroy(collision.gameObject);
+        }
     }
 }
